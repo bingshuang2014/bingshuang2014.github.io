@@ -450,7 +450,7 @@
 #error-page .terminal-run input {
   outline: none;
   border: none;
-  background-color: #EEEEEE;
+  background-color: #f2eada;
   width: 90%;
 }
 #error-page .terminal-run input::-ms-clear {
