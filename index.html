@@ -31,7 +31,7 @@
 <link rel="stylesheet" href="/css/base.css">
 <link rel="stylesheet" href="/css/pages/article-exp.css">
 <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/css/thirdParty/highlight/github.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/undefined.css">
 
     <!--script-->
 
@@ -58,6 +58,10 @@
 <div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
 <![endif]-->
 
+	<script type="text/javascript" src="/js/love.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/styles/monokai-sublime.min.css">
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>  
 <div id="wrap">
     <header >
     <div id="site-meta">
@@ -95,7 +99,7 @@
     
 <li class="widget widget-normal category">
     <h3 class="fa fa-th widget-title">分类</h3>
-    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/"><i class="fa" aria-hidden="true">其他</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/编程/"><i class="fa" aria-hidden="true">编程</i></a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link current" href="/categories/编程/Java/"><i class="fa" aria-hidden="true">Java</i></a><span class="category-list-count">2</span></li></ul></li></ul>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/"><i class="fa" aria-hidden="true">其他</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/编程/"><i class="fa" aria-hidden="true">编程</i></a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link current" href="/categories/编程/Java/"><i class="fa" aria-hidden="true">Java</i></a><span class="category-list-count">3</span></li></ul></li></ul>
 </li>
 
 
@@ -103,7 +107,7 @@
     
 <li class="widget widget-normal archive">
   <h3 class="fa fa-archive widget-title">归档</h3>
-    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/"><i class="fa" aria-hidden="true">一月 2018</i></a><span class="archive-list-count">3</span></li></ul>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/"><i class="fa" aria-hidden="true">一月 2018</i></a><span class="archive-list-count">4</span></li></ul>
 </li>
 
 
@@ -115,7 +119,7 @@
   <h3 class="fa fa-tags widget-title">标签云</h3>
   <div class="tagcloud-content">
     
-      <a href="/tags/插旗/" style="font-size: 0.14rem; color: #69c">插旗</a> <a href="/tags/代码/" style="font-size: 0.2rem; color: #0a407c">代码</a> <a href="/tags/Java/" style="font-size: 0.2rem; color: #0a407c">Java</a> <a href="/tags/翁恺/" style="font-size: 0.14rem; color: #69c">翁恺</a> <a href="/tags/微信/" style="font-size: 0.14rem; color: #69c">微信</a> <a href="/tags/快速/" style="font-size: 0.14rem; color: #69c">快速</a>
+      <a href="/tags/插旗/" style="font-size: 0.14rem; color: #69c">插旗</a> <a href="/tags/代码/" style="font-size: 0.2rem; color: #0a407c">代码</a> <a href="/tags/Java/" style="font-size: 0.2rem; color: #0a407c">Java</a> <a href="/tags/翁恺/" style="font-size: 0.14rem; color: #69c">翁恺</a> <a href="/tags/微信/" style="font-size: 0.14rem; color: #69c">微信</a> <a href="/tags/快速/" style="font-size: 0.14rem; color: #69c">快速</a> <a href="/tags/Fraction/" style="font-size: 0.14rem; color: #69c">Fraction</a> <a href="/tags/分数/" style="font-size: 0.14rem; color: #69c">分数</a>
   </div>
 </li>
 
@@ -144,6 +148,63 @@
     
     
     
+    
+    
+    <li  class="article-excerpt-wrap " _href = "/2018/01/27/18012701/">
+        <div class="article-img img-ajax" data-src= /img/default-1.jpg>
+           <div class="loading-img"><i class="fa fa-pulse fa-spinner"></i></div>
+        </div>
+        <div class="article-excerpt">
+            
+            <a class="article-title-link" href="/2018/01/27/18012701/">
+                <h2 class="article-title">★☆ 设计一个表示分数的类Fraction</h2>
+            </a>
+            
+            <p class="article-content">
+                正文Java语言程序设计进阶 第1周编程题
+虽然我不能提交 但是耐不住自己试了试
+到现在搞不懂题目中
+要 double toDouble(); 这个功能
+但是在main中没用到 tuDouble(); 那要他有啥用
+说明为了防止有人直接拷贝代码去提交
+我对代码做了点小改变
+但是不影响你测试学习
+为自己机智 鼓掌.jpg
+代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576import java.util.Scanner;public class Fraction &#123;	public int x;//分子	public int y;//分母	p...
+            </p>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Java</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            代码
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2018/01/27</span>
+    </span>
+    
+    
+    
+    <a href="/2018/01/27/18012701/" class="read-article">阅读全文</a>
+    
+</div>
+
+        </div>
+        
+    </li>
     
     
     <li  class="article-excerpt-wrap " _href = "/2018/01/25/18012501/">
@@ -227,7 +288,7 @@ ctrl + F11 运行
 点击下一个富文本
 就可以看到一个”下载附件”的按钮
 下载即可
-资料Java语言程序设计进阶–翁恺
+链接Java语言程序设计进阶–翁恺
 
             </p>
             <div class="article-meta">
@@ -389,6 +450,6 @@ o(≧v≦)o~~
 </script>
 <script src="/js/app.js"></script>
 
-<script type="text/javascript" src="/js/love.js"></script>
+
 </body>
 </html>

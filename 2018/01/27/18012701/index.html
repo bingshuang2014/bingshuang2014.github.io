@@ -1,0 +1,354 @@
+<!doctype html>
+<html>
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable"  content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no">
+    
+    
+    <!--Simple SEO-->
+
+<meta name="description" content=我种树你能乘凉，那就再好不过了。/>
+
+
+<meta name="robots" content=all />
+<meta name="google" content=all />
+<meta name="googlebot" content=all />
+<meta name="verify" content=all />
+    <!--Title-->
+
+<title>★☆ 设计一个表示分数的类Fraction | 冰霜窝 o(≧v≦)o ~~</title>
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/pages/post.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/thirdParty/highlight/undefined.css">
+<link rel="stylesheet" href="/.css">
+
+    <!--script-->
+
+
+
+<!--<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>-->
+
+
+    
+    
+</head>
+
+<body id="normal">
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<style>
+    header{ top: 71px; position: absolute!important;}
+    #container{padding-top: 151px!important;}
+</style>
+<div style="position:fixed;z-index:9999;left:0;top:0;width:100%;height:70px;background-color:#e0e0e0;color:#396CA5;border-bottom:1px solid #cecece;text-align:center;line-height:70px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+	<script type="text/javascript" src="/js/love.js"></script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/styles/monokai-sublime.min.css">
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.12.0/build/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>  
+<div id="wrap">
+    <header  style="position: absolute;" >
+    <div id="site-meta">
+        <a href="/" id="logo">
+            <h1 class="title">冰霜窝 o(≧v≦)o ~~</h1>
+        </a>
+        
+        <h2 class="subtitle">希望可以帮助到你 ~~</h2>
+        
+    </div>
+    <ul id="nav">
+        
+            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+        
+        <li id="search"><a href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a></li>
+    </ul>
+</header>
+
+    <div id="container">
+        
+<ul id="sidebar">
+    
+    
+<li class="widget notification">
+    <i class="fa fa-bell-o"></i>
+    <div>
+        
+<p>欢迎来到冰霜2014的种树窝！<br>
+来qq聊骚撒：<a href="http://wpa.qq.com/msgrd?v=3&uin=709023937&site=qq&menu=yes"
+ target="_blank">qq：*********</a></p>
+    </div>
+</li>
+
+    
+    
+<li class="widget widget-normal category">
+    <h3 class="fa fa-th widget-title">分类</h3>
+    <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/其他/"><i class="fa" aria-hidden="true">其他</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link current" href="/categories/编程/"><i class="fa" aria-hidden="true">编程</i></a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link current" href="/categories/编程/Java/"><i class="fa" aria-hidden="true">Java</i></a><span class="category-list-count">3</span></li></ul></li></ul>
+</li>
+
+
+    
+    
+<li class="widget widget-normal archive">
+  <h3 class="fa fa-archive widget-title">归档</h3>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/"><i class="fa" aria-hidden="true">一月 2018</i></a><span class="archive-list-count">4</span></li></ul>
+</li>
+
+
+    
+    
+    
+    
+<li class="widget widget-normal tags">
+  <h3 class="fa fa-tags widget-title">标签云</h3>
+  <div class="tagcloud-content">
+    
+      <a href="/tags/插旗/" style="font-size: 0.14rem; color: #69c">插旗</a> <a href="/tags/代码/" style="font-size: 0.2rem; color: #0a407c">代码</a> <a href="/tags/Java/" style="font-size: 0.2rem; color: #0a407c">Java</a> <a href="/tags/翁恺/" style="font-size: 0.14rem; color: #69c">翁恺</a> <a href="/tags/微信/" style="font-size: 0.14rem; color: #69c">微信</a> <a href="/tags/快速/" style="font-size: 0.14rem; color: #69c">快速</a> <a href="/tags/Fraction/" style="font-size: 0.14rem; color: #69c">Fraction</a> <a href="/tags/分数/" style="font-size: 0.14rem; color: #69c">分数</a>
+  </div>
+</li>
+
+
+    
+    
+<li class="widget widget-normal friends-link">
+    <h3 class="fa fa-globe widget-title">友链</h3><br/>
+
+    
+        <a href="http://geekaholiclin.github.io" class="fa" target="_blank">技术支持</a>
+
+    
+
+</li>
+
+    
+</ul>
+
+
+        <div id="main">
+    <article id="post">
+        <div id="post-header">
+
+            <h1 id="★☆ 设计一个表示分数的类Fraction">
+                
+                ★☆ 设计一个表示分数的类Fraction
+                
+            </h1>
+            <div class="article-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+        <span>Java</span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+         <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            代码
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta ">2018/01/27</span>
+    </span>
+    
+    
+    
+</div>
+
+            
+            
+        </div>
+        
+        <div id="post-body">
+            <h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>Java语言程序设计进阶 第1周编程题</p>
+<p>虽然我不能提交 但是耐不住自己试了试</p>
+<p>到现在搞不懂题目中</p>
+<p>要 <strong><code>double toDouble();</code></strong> 这个功能</p>
+<p>但是在main中没用到 <strong><code>tuDouble();</code></strong> 那要他有啥用</p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>为了防止有人直接拷贝代码去提交</p>
+<p>我对代码做了点小改变</p>
+<p>但是不影响你测试学习</p>
+<p>为自己机智 鼓掌.jpg</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Fraction</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> x;<span class="comment">//分子</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> y;<span class="comment">//分母</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> dx,dy;	</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Fraction</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.x=x;</span><br><span class="line">		<span class="keyword">this</span>.y=y;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">toDouble</span><span class="params">(Fraction a)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		dx=a.x;</span><br><span class="line">		dy=a.y;</span><br><span class="line">		System.out.println(dx/dy);</span><br><span class="line">		<span class="keyword">return</span> dx/dy;</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">while</span>(<span class="keyword">true</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>((y=y%x)==<span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">return</span> x;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span>((x=x%y)==<span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">return</span> y;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(x==y)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(<span class="number">1</span>);	</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println((x/gcd(x,y))+<span class="string">"/"</span>+(y/gcd(x,y)));</span><br><span class="line">		&#125;</span><br><span class="line">			</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	<span class="function"><span class="keyword">public</span>  Fraction <span class="title">plus</span><span class="params">(Fraction a)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		Fraction w= <span class="keyword">new</span> Fraction((<span class="keyword">this</span>.x)*(a.y)+(a.x)*(<span class="keyword">this</span>.y),((<span class="keyword">this</span>.y)*(a.y)));</span><br><span class="line">		<span class="keyword">return</span> w;</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Fraction <span class="title">multiply</span><span class="params">(Fraction a)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		Fraction w = <span class="keyword">new</span> Fraction(<span class="keyword">this</span>.x*a.x,<span class="keyword">this</span>.y*a.y);	</span><br><span class="line">		<span class="keyword">return</span> w;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner input = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		Fraction a = <span class="keyword">new</span> Fraction(input.nextInt(), input.nextInt());</span><br><span class="line">		Fraction b = <span class="keyword">new</span> Fraction(input.nextInt(),input.nextInt());</span><br><span class="line">		a.print();</span><br><span class="line">		b.print();</span><br><span class="line">		toDouble(b);</span><br><span class="line">		a.plus(b).print();</span><br><span class="line">		a.multiply(b).plus(<span class="keyword">new</span> Fraction(<span class="number">5</span>,<span class="number">6</span>)).print();</span><br><span class="line">		a.print();</span><br><span class="line">		b.print();</span><br><span class="line">		input.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p><a href="http://mooc.study.163.com/course/1000004001" target="_blank" rel="noopener">Java语言程序设计进阶–翁恺</a></p>
+
+        </div>
+        <div id="post-footer">
+            <div class="avatar" >
+                <img src="/img/author.png" alt="avatar"/>
+                
+                <a href="javascript:void(0)" class="high-song">high起来 &#128541;</a>
+                
+                
+                <a href="javascript:void(0)" class="donate fa">投个币呗 &#128536;</a>
+                
+            </div>
+            <ul class="author-profile-section">
+                <li>
+                  
+                  作者:
+                  
+                    
+                    <a href="/">冰霜2014</a>
+                </li>
+                
+                <li>发表日期: <span>2018-01-27  23:53:52</span></li>
+                
+                <li>最后编辑日期: <span>2018-01-27  23:53:18</span></li>
+                
+                <li class="post-category">
+                    文章分类:
+                    
+                    <a href="/categories/编程/">编程</a>
+                    
+                    <a href="/categories/编程/Java/">Java</a>
+                    
+                </li>
+                <li class="post-tags">
+                    文章标签:
+                    
+                    <a href="/tags/代码/">代码</a>
+                    
+                    <a href="/tags/Java/">Java</a>
+                    
+                    <a href="/tags/Fraction/">Fraction</a>
+                    
+                    <a href="/tags/分数/">分数</a>
+                    
+                </li>
+                
+                <li> 版权声明: 我种树你乘凉呗</li>
+                
+            </ul>
+            <div id="donate-wrap">
+                
+                
+                
+                <img src="/img/zfb.png" alt="支付宝" class="donate-img">
+                
+                
+            </div>
+        </div>
+    </article>
+    <div class="article-nav">
+        
+        
+        <a href="/2018/01/25/18012501/" class="next-post fa">★☆ 微信自动快速复制粘帖发消息</a>
+        
+    </div>
+    
+    <div id="comments">
+        
+
+<script>
+  gitment.render(document.getElementById("comments"));
+</script>
+
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+    <footer id="footer">
+    
+    <div class="social">
+        
+        <a href="https://github.com/bingshuang2014" class="fa fa-github" target="_blank" title="Follow me~"></a>
+        
+    </div>
+    
+    <div>
+        
+        <a href="/" class="copyright-links">冰霜2014</a>&copy;2015 - 2018.All Rights
+        Reserved.
+    </div>
+    <p>| 布鲁布鲁 表白萌萌 |</p>
+    
+</footer>
+
+</div>
+    <ul id="tools">
+    <li class="totop-btn fa fa-angle-up"></li>
+    <li class="exchange-btn fa fa-exchange"></li>
+  
+    <li class="toc-btn fa fa-list-ul"></li>
+    
+    
+
+    
+</ul>
+<p id="process"></p>
+<div id="search-overlay">
+    <div class="search-area-wrap">
+        <div id="search-area">
+            <div class="input-wrap focus">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <input id="search-input" autofocus autocomplete="off" type="text"
+                       placeholder="search this website..."/>
+            </div>
+            <ul id="search-result">
+                <li class="load-first"><i class="fa fa-spinner fa-pulse"></i></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#正文"><span class="toc-number">1.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-number">2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-number">3.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#链接"><span class="toc-number">4.</span> <span class="toc-text">链接</span></a></li></ol>
+
+
+    <script src="/js/highsong.js"></script>
+
+
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+    //theme config datas
+    var copyrightObj = {};
+    copyrightObj.enable = 'true';
+    copyrightObj.triggerCopyLength = '200';
+    copyrightObj.appendText = '商业转载请联系作者获得授权,非商业转载请注明出处 © example';
+    var leancloudObj = {};
+    leancloudObj.enable = 'false';
+    leancloudObj.className = 'BlogCounter';
+    leancloudObj.limits = '10';
+</script>
+<script type="text/javascript">
+    var search = {};
+    var search_path = "search.xml";
+    if (!search_path) {
+        search_path = "search.xml";
+    }
+    search.path = "/" + search_path;
+    search.func =  _ajax.init();
+</script>
+<script src="/js/app.js"></script>
+
+
+</body>
+</html>
