@@ -3,6 +3,44 @@
     
     
     <entry>
+        <title><![CDATA[★☆ 斐讯K1 22.4.2.15刷机]]></title>
+        <url>https://bingshuang2014.github.io/2018/02/14/18021401/</url>
+        <content type="html"><![CDATA[<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>K1 免费得的 不太安全 并且需要开启免广告</p>
+<p>so 对K1进行大手术</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ul>
+<li><p>刷入Breed<br><a href="http://www.right.com.cn/forum/forum.php?mod=viewthread&amp;tid=207427" target="_blank" rel="noopener">教程在这里</a></p>
+</li>
+<li><p>刷入老毛子路由器固件<br><a href="http://www.right.com.cn/FORUM/thread-161324-1-1.html" target="_blank" rel="noopener">教程在这里</a></p>
+</li>
+</ul>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>在执行下面这命令的时候<br><strong><code>wget http://breed.hackpascal.net/breed-mt7620-phicomm-psg1208.bin</code></strong></p>
+<p>会提示下载失败 </p>
+<p>原因是hackpascal官网升级成了https</p>
+<p>解决办法很简单 先浏览器下载下bin文件 然后 本地搭建http服务</p>
+<p>wget <a href="http://你的地址/breed-mt7620-phicomm-psg1208.bin" target="_blank" rel="noopener">http://你的地址/breed-mt7620-phicomm-psg1208.bin</a></p>
+<p>完美解决</p>
+]]></content>
+        
+        <categories>
+            
+            <category> 刷机 </category>
+            
+            <category> K1 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> K1 </tag>
+            
+            <tag> 路由 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
         <title><![CDATA[★☆ 设计一个表示分数的类Fraction]]></title>
         <url>https://bingshuang2014.github.io/2018/01/27/18012701/</url>
         <content type="html"><![CDATA[<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>Java语言程序设计进阶 第1周编程题</p>
