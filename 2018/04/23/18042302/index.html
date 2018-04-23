@@ -22,7 +22,7 @@
 <meta name="verify" content=all />
     <!--Title-->
 
-<title>★☆ CentOS搭建nginx环境get上传hexo网页 | 冰霜窝 o(≧v≦)o ~~</title>
+<title>★☆ Y国内9*1自拍社区作品水平鉴赏 | 冰霜窝 o(≧v≦)o ~~</title>
 
 
 <link rel="icon" href="/favicon.ico">
@@ -141,9 +141,9 @@
     <article id="post">
         <div id="post-header">
 
-            <h1 id="★☆ CentOS搭建nginx环境get上传hexo网页">
+            <h1 id="★☆ Y国内9*1自拍社区作品水平鉴赏">
                 
-                ★☆ CentOS搭建nginx环境get上传hexo网页
+                ★☆ Y国内9*1自拍社区作品水平鉴赏
                 
             </h1>
             <div class="article-meta">
@@ -151,7 +151,7 @@
     
     <span class="categories-meta fa-wrap">
             <i class="fa fa-folder-open-o"></i>
-        <span>nginx</span>
+        <span>测评</span>
     </span>
     
     
@@ -159,7 +159,7 @@
          <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-            hexo
+            被加密
             
         </span>
     </span>
@@ -179,65 +179,132 @@
         </div>
         
         <div id="post-body">
-            <h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>github提供的静态博客功能很强大</p>
-<p>但是总有些py交易不能放在github上</p>
-<p>那就在第三方服务器搭建nginx,get环境</p>
-<p>最后hexo本地编辑网页</p>
-<p>最后上传</p>
-<p>完工</p>
-<h3 id="代码1-CentOS"><a href="#代码1-CentOS" class="headerlink" title="代码1-CentOS"></a>代码1-CentOS</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//由于centos的yum仓库没有nginx 咱们先安装EPEL</span><br><span class="line">sudo yum install epel-release</span><br><span class="line">yum update</span><br><span class="line"></span><br><span class="line">//安装nginx</span><br><span class="line">yum -y install nginx</span><br><span class="line"></span><br><span class="line">//启动nginx</span><br><span class="line">/bin/systemctl start nginx.service</span><br><span class="line"></span><br><span class="line">//配置防火墙</span><br><span class="line">firewall-cmd --zone=public --add-port=80/tcp --permanent </span><br><span class="line">systemctl stop firewalld.service  </span><br><span class="line">systemctl start firewalld.service </span><br><span class="line"></span><br><span class="line">//安装git</span><br><span class="line">yum install git</span><br><span class="line">adduser git</span><br><span class="line"></span><br><span class="line">cd /data/git   </span><br><span class="line">mkdir hexo.git</span><br><span class="line">git init --bare hexo.git //这一步是建立裸仓库</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//给权限</span><br><span class="line">chown -R  git:git hexo.git</span><br><span class="line">chown -R  git:git git</span><br><span class="line">chown 755 hexo.git</span><br><span class="line">chown 755 /data/git</span><br><span class="line">chown -R 755 /data/git</span><br></pre></td></tr></table></figure>
-<h3 id="代码2-本地"><a href="#代码2-本地" class="headerlink" title="代码2-本地"></a>代码2-本地</h3><pre><code class="linux">//本地安装 git hode.js
-//git中安装hexo
-$npm install -g hexo
-$npm install
-
-#设置博客根目录
-$hexo init
-
-
-/*
-//这些可以不用配
-//配置ssh
-ssh-keygen -t rsa -C &quot;***@qq.com&quot;
-//找到公钥
-#C:\Users\Administrator\.ssh
-*************
-//服务器添加
-cd /data/git
-mkdir .ssh
-nano /data/git/.ssh/authorized_keys
-*/
-
-//这个总知道吧
-deploy:
-  type: git
-  repo: root@*.*.*.*:/data/git/hexo.git
-  branch: master
-
-//如果 hexo d 报错的话 可以安装这个
-npm install --save hexo-deployer-git
+            <h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>这是黑豹社写的一篇关于</p>
+<p>国内自拍社区的水平的鉴赏</p>
+<p>学习到了很多 比如</p>
+<p>康<em>生   椰</em>哥    汝_作室    冷_S</p>
+<h3 id="密码提示"><a href="#密码提示" class="headerlink" title="密码提示"></a>密码提示</h3><p><a href="http://tool.chinaz.com/Tools/textencrypt.aspx" target="_blank" rel="noopener">→</a><br>md序号</p>
+<h3 id="代码-AES加密"><a href="#代码-AES加密" class="headerlink" title="代码-AES加密"></a>代码-AES加密</h3><pre><code>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
 </code></pre>
-<h3 id="代码3-CentOS"><a href="#代码3-CentOS" class="headerlink" title="代码3-CentOS"></a>代码3-CentOS</h3><pre><code class="linux">/*
-//这一段新手就不要改了直接用nginx的默认目录
-//配置nginx
-vi /etc/nginx/nginx.conf
-#更改 root 为/data/git/www  更改location/为 index index.html index.htm;
-/bin/systemctl restart nginx.service
-*/
-
-//建立钩子
-mv post-update.sample post-update
-//写入post-update
-git --work-tree=/data/git/www --git-dir=/data/git/hexo.git checkout -f
-
-//建立钩子（使用默认nginx路径的话）
-mv post-update.sample post-update
-//写入post-update
-git --work-tree=/usr/share/nginx/html --git-dir=/data/git/hexo.git checkout -f
-
-chmod +x post-update
-</code></pre>
-
         </div>
         <div id="post-footer">
             <div class="avatar" >
@@ -258,28 +325,24 @@ chmod +x post-update
                     <a href="/">冰霜2014</a>
                 </li>
                 
-                <li>发表日期: <span>2018-04-23  18:02:55</span></li>
+                <li>发表日期: <span>2018-04-23  19:36:48</span></li>
                 
-                <li>最后编辑日期: <span>2018-04-23  18:08:36</span></li>
+                <li>最后编辑日期: <span>2018-04-23  19:35:32</span></li>
                 
                 <li class="post-category">
                     文章分类:
                     
-                    <a href="/categories/CentOS/">CentOS</a>
+                    <a href="/categories/9-1/">9*1</a>
                     
-                    <a href="/categories/CentOS/nginx/">nginx</a>
+                    <a href="/categories/9-1/测评/">测评</a>
                     
                 </li>
                 <li class="post-tags">
                     文章标签:
                     
-                    <a href="/tags/hexo/">hexo</a>
+                    <a href="/tags/被加密/">被加密</a>
                     
-                    <a href="/tags/get/">get</a>
-                    
-                    <a href="/tags/nginx/">nginx</a>
-                    
-                    <a href="/tags/环境搭建/">环境搭建</a>
+                    <a href="/tags/9-1/">9*1</a>
                     
                 </li>
                 
@@ -300,10 +363,8 @@ chmod +x post-update
     </article>
     <div class="article-nav">
         
-        <a href="/2018/04/23/18042302/" class="pre-post fa fa-caret-left">★☆ Y国内9*1自拍社区作品水平鉴赏</a>
         
-        
-        <a href="/2018/04/23/18012701/" class="next-post fa">★☆ 设计一个表示分数的类Fraction</a>
+        <a href="/2018/04/23/18042301/" class="next-post fa">★☆ CentOS搭建nginx环境get上传hexo网页</a>
         
     </div>
     
@@ -366,7 +427,7 @@ chmod +x post-update
     </div>
 </div>
 
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#正文"><span class="toc-number">1.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码1-CentOS"><span class="toc-number">2.</span> <span class="toc-text">代码1-CentOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码2-本地"><span class="toc-number">3.</span> <span class="toc-text">代码2-本地</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码3-CentOS"><span class="toc-number">4.</span> <span class="toc-text">代码3-CentOS</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#正文"><span class="toc-number">1.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#密码提示"><span class="toc-number">2.</span> <span class="toc-text">密码提示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码-AES加密"><span class="toc-number">3.</span> <span class="toc-text">代码-AES加密</span></a></li></ol>
 
 
     <script src="/js/highsong.js"></script>
