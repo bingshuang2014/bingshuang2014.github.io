@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://bingshuang2014.github.io/"/>
-  <updated>2018-02-14T12:30:28.859Z</updated>
+  <updated>2018-04-23T10:08:36.362Z</updated>
   <id>https://bingshuang2014.github.io/</id>
   
   <author>
@@ -17,41 +17,112 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>★☆ 斐讯K1 22.4.2.15刷机</title>
-    <link href="https://bingshuang2014.github.io/2018/02/14/18021401/"/>
-    <id>https://bingshuang2014.github.io/2018/02/14/18021401/</id>
-    <published>2018-02-14T12:31:27.979Z</published>
-    <updated>2018-02-14T12:30:28.859Z</updated>
+    <title>★☆ CentOS搭建nginx环境get上传hexo网页</title>
+    <link href="https://bingshuang2014.github.io/2018/04/23/18042301/"/>
+    <id>https://bingshuang2014.github.io/2018/04/23/18042301/</id>
+    <published>2018-04-23T10:02:55.280Z</published>
+    <updated>2018-04-23T10:08:36.362Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>K1 免费得的 不太安全 并且需要开启免广告</p><p>so 对K1进行大手术</p><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ul><li><p>刷入Breed<br><a href="http://www.right.com.cn/forum/forum.php?mod=viewthread&amp;tid=207427" target="_blank" rel="noopener">教程在这里</a></p></li><li><p>刷入老毛子路由器固件<br><a href="http://www.right.com.cn/FORUM/thread-161324-1-1.html" target="_blank" rel="noopener">教程在这里</a></p></li></ul><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>在执行下面这命令的时候<br><strong><code>wget http://breed.hackpascal.net/breed-mt7620-phicomm-psg1208.bin</code></strong></p><p>会提示下载失败 </p><p>原因是hackpascal官网升级成了https</p><p>解决办法很简单 先浏览器下载下bin文件 然后 本地搭建http服务</p><p>wget <a href="http://你的地址/breed-mt7620-phicomm-psg1208.bin" target="_blank" rel="noopener">http://你的地址/breed-mt7620-phicomm-psg1208.bin</a></p><p>完美解决</p>]]></content>
+    <content type="html"><![CDATA[<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>github提供的静态博客功能很强大</p><p>但是总有些py交易不能放在github上</p><p>那就在第三方服务器搭建nginx,get环境</p><p>最后hexo本地编辑网页</p><p>最后上传</p><p>完工</p><h3 id="代码1-CentOS"><a href="#代码1-CentOS" class="headerlink" title="代码1-CentOS"></a>代码1-CentOS</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//由于centos的yum仓库没有nginx 咱们先安装EPEL</span><br><span class="line">sudo yum install epel-release</span><br><span class="line">yum update</span><br><span class="line"></span><br><span class="line">//安装nginx</span><br><span class="line">yum -y install nginx</span><br><span class="line"></span><br><span class="line">//启动nginx</span><br><span class="line">/bin/systemctl start nginx.service</span><br><span class="line"></span><br><span class="line">//配置防火墙</span><br><span class="line">firewall-cmd --zone=public --add-port=80/tcp --permanent </span><br><span class="line">systemctl stop firewalld.service  </span><br><span class="line">systemctl start firewalld.service </span><br><span class="line"></span><br><span class="line">//安装git</span><br><span class="line">yum install git</span><br><span class="line">adduser git</span><br><span class="line"></span><br><span class="line">cd /data/git   </span><br><span class="line">mkdir hexo.git</span><br><span class="line">git init --bare hexo.git //这一步是建立裸仓库</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//给权限</span><br><span class="line">chown -R  git:git hexo.git</span><br><span class="line">chown -R  git:git git</span><br><span class="line">chown 755 hexo.git</span><br><span class="line">chown 755 /data/git</span><br><span class="line">chown -R 755 /data/git</span><br></pre></td></tr></table></figure><h3 id="代码2-本地"><a href="#代码2-本地" class="headerlink" title="代码2-本地"></a>代码2-本地</h3><pre><code class="linux">//本地安装 git hode.js//git中安装hexo$npm install -g hexo$npm install#设置博客根目录$hexo init/*//这些可以不用配//配置sshssh-keygen -t rsa -C &quot;***@qq.com&quot;//找到公钥#C:\Users\Administrator\.ssh*************//服务器添加cd /data/gitmkdir .sshnano /data/git/.ssh/authorized_keys*///这个总知道吧deploy:  type: git  repo: root@*.*.*.*:/data/git/hexo.git  branch: master//如果 hexo d 报错的话 可以安装这个npm install --save hexo-deployer-git</code></pre><h3 id="代码3-CentOS"><a href="#代码3-CentOS" class="headerlink" title="代码3-CentOS"></a>代码3-CentOS</h3><pre><code class="linux">/*//这一段新手就不要改了直接用nginx的默认目录//配置nginxvi /etc/nginx/nginx.conf#更改 root 为/data/git/www  更改location/为 index index.html index.htm;/bin/systemctl restart nginx.service*///建立钩子mv post-update.sample post-update//写入post-updategit --work-tree=/data/git/www --git-dir=/data/git/hexo.git checkout -f//建立钩子（使用默认nginx路径的话）mv post-update.sample post-update//写入post-updategit --work-tree=/usr/share/nginx/html --git-dir=/data/git/hexo.git checkout -fchmod +x post-update</code></pre>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h3 id=&quot;正文&quot;&gt;&lt;a href=&quot;#正文&quot; class=&quot;headerlink&quot; title=&quot;正文&quot;&gt;&lt;/a&gt;正文&lt;/h3&gt;&lt;p&gt;K1 免费得的 不太安全 并且需要开启免广告&lt;/p&gt;
-&lt;p&gt;so 对K1进行大手术&lt;/p&gt;
-&lt;h3 id=&quot;步骤&quot;&gt;&lt;a href=&quot;#步骤
+        &lt;h3 id=&quot;正文&quot;&gt;&lt;a href=&quot;#正文&quot; class=&quot;headerlink&quot; title=&quot;正文&quot;&gt;&lt;/a&gt;正文&lt;/h3&gt;&lt;p&gt;github提供的静态博客功能很强大&lt;/p&gt;
+&lt;p&gt;但是总有些py交易不能放在github上&lt;/p&gt;
+&lt;p&gt;那就在第三方服务器搭建nginx
       
     
     </summary>
     
-      <category term="刷机" scheme="https://bingshuang2014.github.io/categories/%E5%88%B7%E6%9C%BA/"/>
+      <category term="CentOS" scheme="https://bingshuang2014.github.io/categories/CentOS/"/>
     
-      <category term="K1" scheme="https://bingshuang2014.github.io/categories/%E5%88%B7%E6%9C%BA/K1/"/>
+      <category term="nginx" scheme="https://bingshuang2014.github.io/categories/CentOS/nginx/"/>
     
     
-      <category term="K1" scheme="https://bingshuang2014.github.io/tags/K1/"/>
+      <category term="hexo" scheme="https://bingshuang2014.github.io/tags/hexo/"/>
     
-      <category term="路由" scheme="https://bingshuang2014.github.io/tags/%E8%B7%AF%E7%94%B1/"/>
+      <category term="get" scheme="https://bingshuang2014.github.io/tags/get/"/>
+    
+      <category term="nginx" scheme="https://bingshuang2014.github.io/tags/nginx/"/>
+    
+      <category term="环境搭建" scheme="https://bingshuang2014.github.io/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>★☆ Java翁恺网易公开课Shapes.zip</title>
+    <link href="https://bingshuang2014.github.io/2018/04/23/18012401/"/>
+    <id>https://bingshuang2014.github.io/2018/04/23/18012401/</id>
+    <published>2018-04-23T09:17:11.334Z</published>
+    <updated>2018-01-27T15:54:28.015Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>CSDN上竟然要积分才能下载坑人</p><p>在网易公开课”Java语言程序设计进阶1.1”的学习界面</p><p>点击下一个富文本</p><p>就可以看到一个”下载附件”的按钮</p><p>下载即可</p><h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p><a href="http://mooc.study.163.com/course/1000004001" target="_blank" rel="noopener">Java语言程序设计进阶–翁恺</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;正文&quot;&gt;&lt;a href=&quot;#正文&quot; class=&quot;headerlink&quot; title=&quot;正文&quot;&gt;&lt;/a&gt;正文&lt;/h3&gt;&lt;p&gt;CSDN上竟然要积分才能下载坑人&lt;/p&gt;
+&lt;p&gt;在网易公开课”Java语言程序设计进阶1.1”的学习界面&lt;/p&gt;
+&lt;p&gt;点击下一个富文本&lt;/
+      
+    
+    </summary>
+    
+      <category term="编程" scheme="https://bingshuang2014.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Java" scheme="https://bingshuang2014.github.io/categories/%E7%BC%96%E7%A8%8B/Java/"/>
+    
+    
+      <category term="代码" scheme="https://bingshuang2014.github.io/tags/%E4%BB%A3%E7%A0%81/"/>
+    
+      <category term="Java" scheme="https://bingshuang2014.github.io/tags/Java/"/>
+    
+      <category term="翁恺" scheme="https://bingshuang2014.github.io/tags/%E7%BF%81%E6%81%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>★☆ 微信自动快速复制粘帖发消息</title>
+    <link href="https://bingshuang2014.github.io/2018/04/23/18012501/"/>
+    <id>https://bingshuang2014.github.io/2018/04/23/18012501/</id>
+    <published>2018-04-23T09:17:11.334Z</published>
+    <updated>2018-01-26T09:42:12.642Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>最近小米有个活动 需要整点微信公众号发送 <strong><code>小爱同学</code></strong></p><p>取第一个整点的同学 这可需要手速了</p><p>作为一个Java新人 当然是敲敲代码解决喽</p><h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><h5 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h5><ul><li>微信打开你要发送的消息的聊天窗口</li><li>复制代码到eclipse中</li><li>ctrl + F11 运行 </li></ul><h5 id="代码思路"><a href="#代码思路" class="headerlink" title="代码思路"></a>代码思路</h5><ul><li>把 <strong><code>小爱同学</code></strong> 这个字符串放入粘帖板</li><li>快捷键 ctrl + alt + w 打开 <strong><code>微信</code></strong> 窗口</li><li>快捷键 trl + v 粘帖（ <strong><code>15次</code></strong> ）</li><li>回车（ <strong><code>15次</code></strong> ）</li></ul><h5 id="特殊说明"><a href="#特殊说明" class="headerlink" title="特殊说明"></a>特殊说明</h5><ul><li>代码思路中 <strong><code>这样标注的</code></strong> 可以按照你需要的改</li></ul><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.awt.AWTException;</span><br><span class="line"><span class="keyword">import</span> java.awt.Robot;</span><br><span class="line"><span class="keyword">import</span> java.awt.Toolkit;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.KeyEvent;</span><br><span class="line"><span class="keyword">import</span> java.awt.datatransfer.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">toClipBoard</span><span class="params">(String text)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();  </span><br><span class="line"><span class="comment">//封装</span></span><br><span class="line">Transferable totext = <span class="keyword">new</span> StringSelection(text);  </span><br><span class="line"><span class="comment">//放入字符串</span></span><br><span class="line">clipboard.setContents(totext, <span class="keyword">null</span>); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span>  Robot robot;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">openWeiXin</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        robot.keyPress(KeyEvent.VK_ALT);</span><br><span class="line">        robot.keyPress(KeyEvent.VK_CONTROL);</span><br><span class="line">        robot.keyPress(KeyEvent.VK_W);</span><br><span class="line">        robot.keyRelease(KeyEvent.VK_W);</span><br><span class="line">        robot.keyRelease(KeyEvent.VK_CONTROL);</span><br><span class="line">        robot.keyRelease(KeyEvent.VK_ALT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">paste</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        robot.keyPress(KeyEvent.VK_CONTROL);  </span><br><span class="line">        robot.keyPress(KeyEvent.VK_V);  </span><br><span class="line">        robot.keyRelease(KeyEvent.VK_V);  </span><br><span class="line">        robot.keyRelease(KeyEvent.VK_CONTROL); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">enter</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        robot.keyPress(KeyEvent.VK_ENTER);  </span><br><span class="line">        robot.keyRelease(KeyEvent.VK_ENTER); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">//声明一robot实例</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">robot =<span class="keyword">new</span> Robot();</span><br><span class="line">&#125; <span class="keyword">catch</span> (AWTException e) &#123;</span><br><span class="line">e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">toClipBoard(<span class="string">"小爱同学"</span>);</span><br><span class="line">openWeiXin();</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">15</span>;i++)</span><br><span class="line">&#123;</span><br><span class="line">paste();</span><br><span class="line">enter();  </span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;正文&quot;&gt;&lt;a href=&quot;#正文&quot; class=&quot;headerlink&quot; title=&quot;正文&quot;&gt;&lt;/a&gt;正文&lt;/h3&gt;&lt;p&gt;最近小米有个活动 需要整点微信公众号发送 &lt;strong&gt;&lt;code&gt;小爱同学&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;取第一个整点的
+      
+    
+    </summary>
+    
+      <category term="编程" scheme="https://bingshuang2014.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Java" scheme="https://bingshuang2014.github.io/categories/%E7%BC%96%E7%A8%8B/Java/"/>
+    
+    
+      <category term="代码" scheme="https://bingshuang2014.github.io/tags/%E4%BB%A3%E7%A0%81/"/>
+    
+      <category term="Java" scheme="https://bingshuang2014.github.io/tags/Java/"/>
+    
+      <category term="微信" scheme="https://bingshuang2014.github.io/tags/%E5%BE%AE%E4%BF%A1/"/>
+    
+      <category term="快速" scheme="https://bingshuang2014.github.io/tags/%E5%BF%AB%E9%80%9F/"/>
     
   </entry>
   
   <entry>
     <title>★☆ 设计一个表示分数的类Fraction</title>
-    <link href="https://bingshuang2014.github.io/2018/01/27/18012701/"/>
-    <id>https://bingshuang2014.github.io/2018/01/27/18012701/</id>
-    <published>2018-01-27T15:53:52.145Z</published>
+    <link href="https://bingshuang2014.github.io/2018/04/23/18012701/"/>
+    <id>https://bingshuang2014.github.io/2018/04/23/18012701/</id>
+    <published>2018-04-23T09:17:11.334Z</published>
     <updated>2018-01-29T14:20:00.352Z</updated>
     
     <content type="html"><![CDATA[<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>Java语言程序设计进阶 第1周编程题</p><p>虽然我不能提交 但是耐不住自己试了试</p><p>到现在搞不懂题目中</p><p>要 <strong><code>double toDouble();</code></strong> 这个功能</p><p>但是在main中没用到 <strong><code>tuDouble();</code></strong> 那要他有啥用</p><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>为了防止有人直接拷贝代码去提交</p><p>我对代码做了点小改变</p><p>但是不影响你测试学习</p><p>为自己机智 鼓掌.jpg</p><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Fraction</span> </span>&#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> x;<span class="comment">//分子</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> y;<span class="comment">//分母</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">double</span> dx,dy;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Fraction</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">this</span>.x=x;</span><br><span class="line"><span class="keyword">this</span>.y=y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">toDouble</span><span class="params">(Fraction a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">dx=a.x;</span><br><span class="line">dy=a.y;</span><br><span class="line">System.out.println(dx/dy);</span><br><span class="line"><span class="keyword">return</span> dx/dy;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">true</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span>((y=y%x)==<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>((x=x%y)==<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">return</span> y;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">if</span>(x%y==<span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">System.out.println(x/y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">System.out.println((x/gcd(x,y))+<span class="string">"/"</span>+(y/gcd(x,y)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span>  Fraction <span class="title">plus</span><span class="params">(Fraction a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">Fraction w= <span class="keyword">new</span> Fraction((<span class="keyword">this</span>.x)*(a.y)+(a.x)*(<span class="keyword">this</span>.y),((<span class="keyword">this</span>.y)*(a.y)));</span><br><span class="line"><span class="keyword">return</span> w;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> Fraction <span class="title">multiply</span><span class="params">(Fraction a)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">Fraction w = <span class="keyword">new</span> Fraction(<span class="keyword">this</span>.x*a.x,<span class="keyword">this</span>.y*a.y);</span><br><span class="line"><span class="keyword">return</span> w;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">Scanner input = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">Fraction a = <span class="keyword">new</span> Fraction(input.nextInt(), input.nextInt());</span><br><span class="line">Fraction b = <span class="keyword">new</span> Fraction(input.nextInt(),input.nextInt());</span><br><span class="line">a.print();</span><br><span class="line">b.print();</span><br><span class="line">toDouble(b);</span><br><span class="line">a.plus(b).print();</span><br><span class="line">a.multiply(b).plus(<span class="keyword">new</span> Fraction(<span class="number">5</span>,<span class="number">6</span>)).print();</span><br><span class="line">a.print();</span><br><span class="line">b.print();</span><br><span class="line">input.close();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p><a href="http://mooc.study.163.com/course/1000004001" target="_blank" rel="noopener">Java语言程序设计进阶–翁恺</a></p>]]></content>
@@ -84,77 +155,41 @@
   </entry>
   
   <entry>
-    <title>★☆ 微信自动快速复制粘帖发消息</title>
-    <link href="https://bingshuang2014.github.io/2018/01/25/18012501/"/>
-    <id>https://bingshuang2014.github.io/2018/01/25/18012501/</id>
-    <published>2018-01-25T14:58:50.522Z</published>
-    <updated>2018-01-26T09:42:12.642Z</updated>
+    <title>★☆ 斐讯K1 22.4.2.15刷机</title>
+    <link href="https://bingshuang2014.github.io/2018/04/23/18021401/"/>
+    <id>https://bingshuang2014.github.io/2018/04/23/18021401/</id>
+    <published>2018-04-23T09:17:11.334Z</published>
+    <updated>2018-02-14T12:30:28.859Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>最近小米有个活动 需要整点微信公众号发送 <strong><code>小爱同学</code></strong></p><p>取第一个整点的同学 这可需要手速了</p><p>作为一个Java新人 当然是敲敲代码解决喽</p><h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><h5 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h5><ul><li>微信打开你要发送的消息的聊天窗口</li><li>复制代码到eclipse中</li><li>ctrl + F11 运行 </li></ul><h5 id="代码思路"><a href="#代码思路" class="headerlink" title="代码思路"></a>代码思路</h5><ul><li>把 <strong><code>小爱同学</code></strong> 这个字符串放入粘帖板</li><li>快捷键 ctrl + alt + w 打开 <strong><code>微信</code></strong> 窗口</li><li>快捷键 trl + v 粘帖（ <strong><code>15次</code></strong> ）</li><li>回车（ <strong><code>15次</code></strong> ）</li></ul><h5 id="特殊说明"><a href="#特殊说明" class="headerlink" title="特殊说明"></a>特殊说明</h5><ul><li>代码思路中 <strong><code>这样标注的</code></strong> 可以按照你需要的改</li></ul><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.awt.AWTException;</span><br><span class="line"><span class="keyword">import</span> java.awt.Robot;</span><br><span class="line"><span class="keyword">import</span> java.awt.Toolkit;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.KeyEvent;</span><br><span class="line"><span class="keyword">import</span> java.awt.datatransfer.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">toClipBoard</span><span class="params">(String text)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();  </span><br><span class="line"><span class="comment">//封装</span></span><br><span class="line">Transferable totext = <span class="keyword">new</span> StringSelection(text);  </span><br><span class="line"><span class="comment">//放入字符串</span></span><br><span class="line">clipboard.setContents(totext, <span class="keyword">null</span>); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span>  Robot robot;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">openWeiXin</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        robot.keyPress(KeyEvent.VK_ALT);</span><br><span class="line">        robot.keyPress(KeyEvent.VK_CONTROL);</span><br><span class="line">        robot.keyPress(KeyEvent.VK_W);</span><br><span class="line">        robot.keyRelease(KeyEvent.VK_W);</span><br><span class="line">        robot.keyRelease(KeyEvent.VK_CONTROL);</span><br><span class="line">        robot.keyRelease(KeyEvent.VK_ALT);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">paste</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        robot.keyPress(KeyEvent.VK_CONTROL);  </span><br><span class="line">        robot.keyPress(KeyEvent.VK_V);  </span><br><span class="line">        robot.keyRelease(KeyEvent.VK_V);  </span><br><span class="line">        robot.keyRelease(KeyEvent.VK_CONTROL); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">enter</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        robot.keyPress(KeyEvent.VK_ENTER);  </span><br><span class="line">        robot.keyRelease(KeyEvent.VK_ENTER); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">//声明一robot实例</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">robot =<span class="keyword">new</span> Robot();</span><br><span class="line">&#125; <span class="keyword">catch</span> (AWTException e) &#123;</span><br><span class="line">e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">toClipBoard(<span class="string">"小爱同学"</span>);</span><br><span class="line">openWeiXin();</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">15</span>;i++)</span><br><span class="line">&#123;</span><br><span class="line">paste();</span><br><span class="line">enter();  </span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;正文&quot;&gt;&lt;a href=&quot;#正文&quot; class=&quot;headerlink&quot; title=&quot;正文&quot;&gt;&lt;/a&gt;正文&lt;/h3&gt;&lt;p&gt;最近小米有个活动 需要整点微信公众号发送 &lt;strong&gt;&lt;code&gt;小爱同学&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;取第一个整点的
-      
-    
-    </summary>
-    
-      <category term="编程" scheme="https://bingshuang2014.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
-    
-      <category term="Java" scheme="https://bingshuang2014.github.io/categories/%E7%BC%96%E7%A8%8B/Java/"/>
-    
-    
-      <category term="代码" scheme="https://bingshuang2014.github.io/tags/%E4%BB%A3%E7%A0%81/"/>
-    
-      <category term="Java" scheme="https://bingshuang2014.github.io/tags/Java/"/>
-    
-      <category term="微信" scheme="https://bingshuang2014.github.io/tags/%E5%BE%AE%E4%BF%A1/"/>
-    
-      <category term="快速" scheme="https://bingshuang2014.github.io/tags/%E5%BF%AB%E9%80%9F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>★☆ Java翁恺网易公开课Shapes.zip</title>
-    <link href="https://bingshuang2014.github.io/2018/01/24/18012401/"/>
-    <id>https://bingshuang2014.github.io/2018/01/24/18012401/</id>
-    <published>2018-01-24T05:50:16.007Z</published>
-    <updated>2018-01-27T15:54:28.015Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>CSDN上竟然要积分才能下载坑人</p><p>在网易公开课”Java语言程序设计进阶1.1”的学习界面</p><p>点击下一个富文本</p><p>就可以看到一个”下载附件”的按钮</p><p>下载即可</p><h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p><a href="http://mooc.study.163.com/course/1000004001" target="_blank" rel="noopener">Java语言程序设计进阶–翁恺</a></p>]]></content>
+    <content type="html"><![CDATA[<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>K1 免费得的 不太安全 并且需要开启免广告</p><p>so 对K1进行大手术</p><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ul><li><p>刷入Breed<br><a href="http://www.right.com.cn/forum/forum.php?mod=viewthread&amp;tid=207427" target="_blank" rel="noopener">教程在这里</a></p></li><li><p>刷入老毛子路由器固件<br><a href="http://www.right.com.cn/FORUM/thread-161324-1-1.html" target="_blank" rel="noopener">教程在这里</a></p></li></ul><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>在执行下面这命令的时候<br><strong><code>wget http://breed.hackpascal.net/breed-mt7620-phicomm-psg1208.bin</code></strong></p><p>会提示下载失败 </p><p>原因是hackpascal官网升级成了https</p><p>解决办法很简单 先浏览器下载下bin文件 然后 本地搭建http服务</p><p>wget <a href="http://你的地址/breed-mt7620-phicomm-psg1208.bin" target="_blank" rel="noopener">http://你的地址/breed-mt7620-phicomm-psg1208.bin</a></p><p>完美解决</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h3 id=&quot;正文&quot;&gt;&lt;a href=&quot;#正文&quot; class=&quot;headerlink&quot; title=&quot;正文&quot;&gt;&lt;/a&gt;正文&lt;/h3&gt;&lt;p&gt;CSDN上竟然要积分才能下载坑人&lt;/p&gt;
-&lt;p&gt;在网易公开课”Java语言程序设计进阶1.1”的学习界面&lt;/p&gt;
-&lt;p&gt;点击下一个富文本&lt;/
+        &lt;h3 id=&quot;正文&quot;&gt;&lt;a href=&quot;#正文&quot; class=&quot;headerlink&quot; title=&quot;正文&quot;&gt;&lt;/a&gt;正文&lt;/h3&gt;&lt;p&gt;K1 免费得的 不太安全 并且需要开启免广告&lt;/p&gt;
+&lt;p&gt;so 对K1进行大手术&lt;/p&gt;
+&lt;h3 id=&quot;步骤&quot;&gt;&lt;a href=&quot;#步骤
       
     
     </summary>
     
-      <category term="编程" scheme="https://bingshuang2014.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+      <category term="刷机" scheme="https://bingshuang2014.github.io/categories/%E5%88%B7%E6%9C%BA/"/>
     
-      <category term="Java" scheme="https://bingshuang2014.github.io/categories/%E7%BC%96%E7%A8%8B/Java/"/>
+      <category term="K1" scheme="https://bingshuang2014.github.io/categories/%E5%88%B7%E6%9C%BA/K1/"/>
     
     
-      <category term="代码" scheme="https://bingshuang2014.github.io/tags/%E4%BB%A3%E7%A0%81/"/>
+      <category term="K1" scheme="https://bingshuang2014.github.io/tags/K1/"/>
     
-      <category term="Java" scheme="https://bingshuang2014.github.io/tags/Java/"/>
-    
-      <category term="翁恺" scheme="https://bingshuang2014.github.io/tags/%E7%BF%81%E6%81%BA/"/>
+      <category term="路由" scheme="https://bingshuang2014.github.io/tags/%E8%B7%AF%E7%94%B1/"/>
     
   </entry>
   
   <entry>
     <title>★☆ 插旗 占地喽</title>
-    <link href="https://bingshuang2014.github.io/2018/01/24/18012301/"/>
-    <id>https://bingshuang2014.github.io/2018/01/24/18012301/</id>
-    <published>2018-01-24T02:57:58.640Z</published>
+    <link href="https://bingshuang2014.github.io/2018/04/23/18012301/"/>
+    <id>https://bingshuang2014.github.io/2018/04/23/18012301/</id>
+    <published>2018-04-23T09:17:10.544Z</published>
     <updated>2018-01-24T11:47:23.290Z</updated>
     
     <content type="html"><![CDATA[<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>冰霜2014 插旗！！！</p><p>o(≧v≦)o~~</p>]]></content>

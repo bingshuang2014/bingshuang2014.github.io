@@ -3,56 +3,99 @@
     
     
     <entry>
-        <title><![CDATA[★☆ 斐讯K1 22.4.2.15刷机]]></title>
-        <url>https://bingshuang2014.github.io/2018/02/14/18021401/</url>
-        <content type="html"><![CDATA[<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>K1 免费得的 不太安全 并且需要开启免广告</p>
-<p>so 对K1进行大手术</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ul>
-<li><p>刷入Breed<br><a href="http://www.right.com.cn/forum/forum.php?mod=viewthread&amp;tid=207427" target="_blank" rel="noopener">教程在这里</a></p>
-</li>
-<li><p>刷入老毛子路由器固件<br><a href="http://www.right.com.cn/FORUM/thread-161324-1-1.html" target="_blank" rel="noopener">教程在这里</a></p>
-</li>
-</ul>
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>在执行下面这命令的时候<br><strong><code>wget http://breed.hackpascal.net/breed-mt7620-phicomm-psg1208.bin</code></strong></p>
-<p>会提示下载失败 </p>
-<p>原因是hackpascal官网升级成了https</p>
-<p>解决办法很简单 先浏览器下载下bin文件 然后 本地搭建http服务</p>
-<p>wget <a href="http://你的地址/breed-mt7620-phicomm-psg1208.bin" target="_blank" rel="noopener">http://你的地址/breed-mt7620-phicomm-psg1208.bin</a></p>
-<p>完美解决</p>
+        <title><![CDATA[★☆ CentOS搭建nginx环境get上传hexo网页]]></title>
+        <url>https://bingshuang2014.github.io/2018/04/23/18042301/</url>
+        <content type="html"><![CDATA[<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>github提供的静态博客功能很强大</p>
+<p>但是总有些py交易不能放在github上</p>
+<p>那就在第三方服务器搭建nginx,get环境</p>
+<p>最后hexo本地编辑网页</p>
+<p>最后上传</p>
+<p>完工</p>
+<h3 id="代码1-CentOS"><a href="#代码1-CentOS" class="headerlink" title="代码1-CentOS"></a>代码1-CentOS</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">//由于centos的yum仓库没有nginx 咱们先安装EPEL</span><br><span class="line">sudo yum install epel-release</span><br><span class="line">yum update</span><br><span class="line"></span><br><span class="line">//安装nginx</span><br><span class="line">yum -y install nginx</span><br><span class="line"></span><br><span class="line">//启动nginx</span><br><span class="line">/bin/systemctl start nginx.service</span><br><span class="line"></span><br><span class="line">//配置防火墙</span><br><span class="line">firewall-cmd --zone=public --add-port=80/tcp --permanent </span><br><span class="line">systemctl stop firewalld.service  </span><br><span class="line">systemctl start firewalld.service </span><br><span class="line"></span><br><span class="line">//安装git</span><br><span class="line">yum install git</span><br><span class="line">adduser git</span><br><span class="line"></span><br><span class="line">cd /data/git   </span><br><span class="line">mkdir hexo.git</span><br><span class="line">git init --bare hexo.git //这一步是建立裸仓库</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//给权限</span><br><span class="line">chown -R  git:git hexo.git</span><br><span class="line">chown -R  git:git git</span><br><span class="line">chown 755 hexo.git</span><br><span class="line">chown 755 /data/git</span><br><span class="line">chown -R 755 /data/git</span><br></pre></td></tr></table></figure>
+<h3 id="代码2-本地"><a href="#代码2-本地" class="headerlink" title="代码2-本地"></a>代码2-本地</h3><pre><code class="linux">//本地安装 git hode.js
+//git中安装hexo
+$npm install -g hexo
+$npm install
+
+#设置博客根目录
+$hexo init
+
+
+/*
+//这些可以不用配
+//配置ssh
+ssh-keygen -t rsa -C &quot;***@qq.com&quot;
+//找到公钥
+#C:\Users\Administrator\.ssh
+*************
+//服务器添加
+cd /data/git
+mkdir .ssh
+nano /data/git/.ssh/authorized_keys
+*/
+
+//这个总知道吧
+deploy:
+  type: git
+  repo: root@*.*.*.*:/data/git/hexo.git
+  branch: master
+
+//如果 hexo d 报错的话 可以安装这个
+npm install --save hexo-deployer-git
+</code></pre>
+<h3 id="代码3-CentOS"><a href="#代码3-CentOS" class="headerlink" title="代码3-CentOS"></a>代码3-CentOS</h3><pre><code class="linux">/*
+//这一段新手就不要改了直接用nginx的默认目录
+//配置nginx
+vi /etc/nginx/nginx.conf
+#更改 root 为/data/git/www  更改location/为 index index.html index.htm;
+/bin/systemctl restart nginx.service
+*/
+
+//建立钩子
+mv post-update.sample post-update
+//写入post-update
+git --work-tree=/data/git/www --git-dir=/data/git/hexo.git checkout -f
+
+//建立钩子（使用默认nginx路径的话）
+mv post-update.sample post-update
+//写入post-update
+git --work-tree=/usr/share/nginx/html --git-dir=/data/git/hexo.git checkout -f
+
+chmod +x post-update
+</code></pre>
 ]]></content>
         
         <categories>
             
-            <category> 刷机 </category>
+            <category> CentOS </category>
             
-            <category> K1 </category>
+            <category> nginx </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> K1 </tag>
+            <tag> hexo </tag>
             
-            <tag> 路由 </tag>
+            <tag> get </tag>
+            
+            <tag> nginx </tag>
+            
+            <tag> 环境搭建 </tag>
             
         </tags>
         
     </entry>
     
     <entry>
-        <title><![CDATA[★☆ 设计一个表示分数的类Fraction]]></title>
-        <url>https://bingshuang2014.github.io/2018/01/27/18012701/</url>
-        <content type="html"><![CDATA[<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>Java语言程序设计进阶 第1周编程题</p>
-<p>虽然我不能提交 但是耐不住自己试了试</p>
-<p>到现在搞不懂题目中</p>
-<p>要 <strong><code>double toDouble();</code></strong> 这个功能</p>
-<p>但是在main中没用到 <strong><code>tuDouble();</code></strong> 那要他有啥用</p>
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>为了防止有人直接拷贝代码去提交</p>
-<p>我对代码做了点小改变</p>
-<p>但是不影响你测试学习</p>
-<p>为自己机智 鼓掌.jpg</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Fraction</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> x;<span class="comment">//分子</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> y;<span class="comment">//分母</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">double</span> dx,dy;	</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Fraction</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.x=x;</span><br><span class="line">		<span class="keyword">this</span>.y=y;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">toDouble</span><span class="params">(Fraction a)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		dx=a.x;</span><br><span class="line">		dy=a.y;</span><br><span class="line">		System.out.println(dx/dy);</span><br><span class="line">		<span class="keyword">return</span> dx/dy;</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">while</span>(<span class="keyword">true</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>((y=y%x)==<span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">return</span> x;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span>((x=x%y)==<span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">return</span> y;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(x%y==<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(x/y);	</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println((x/gcd(x,y))+<span class="string">"/"</span>+(y/gcd(x,y)));</span><br><span class="line">		&#125;</span><br><span class="line">			</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	<span class="function"><span class="keyword">public</span>  Fraction <span class="title">plus</span><span class="params">(Fraction a)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		Fraction w= <span class="keyword">new</span> Fraction((<span class="keyword">this</span>.x)*(a.y)+(a.x)*(<span class="keyword">this</span>.y),((<span class="keyword">this</span>.y)*(a.y)));</span><br><span class="line">		<span class="keyword">return</span> w;</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Fraction <span class="title">multiply</span><span class="params">(Fraction a)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		Fraction w = <span class="keyword">new</span> Fraction(<span class="keyword">this</span>.x*a.x,<span class="keyword">this</span>.y*a.y);	</span><br><span class="line">		<span class="keyword">return</span> w;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner input = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		Fraction a = <span class="keyword">new</span> Fraction(input.nextInt(), input.nextInt());</span><br><span class="line">		Fraction b = <span class="keyword">new</span> Fraction(input.nextInt(),input.nextInt());</span><br><span class="line">		a.print();</span><br><span class="line">		b.print();</span><br><span class="line">		toDouble(b);</span><br><span class="line">		a.plus(b).print();</span><br><span class="line">		a.multiply(b).plus(<span class="keyword">new</span> Fraction(<span class="number">5</span>,<span class="number">6</span>)).print();</span><br><span class="line">		a.print();</span><br><span class="line">		b.print();</span><br><span class="line">		input.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <title><![CDATA[★☆ Java翁恺网易公开课Shapes.zip]]></title>
+        <url>https://bingshuang2014.github.io/2018/04/23/18012401/</url>
+        <content type="html"><![CDATA[<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>CSDN上竟然要积分才能下载坑人</p>
+<p>在网易公开课”Java语言程序设计进阶1.1”的学习界面</p>
+<p>点击下一个富文本</p>
+<p>就可以看到一个”下载附件”的按钮</p>
+<p>下载即可</p>
 <h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p><a href="http://mooc.study.163.com/course/1000004001" target="_blank" rel="noopener">Java语言程序设计进阶–翁恺</a></p>
 ]]></content>
         
@@ -71,9 +114,7 @@
             
             <tag> Java </tag>
             
-            <tag> Fraction </tag>
-            
-            <tag> 分数 </tag>
+            <tag> 翁恺 </tag>
             
         </tags>
         
@@ -81,7 +122,7 @@
     
     <entry>
         <title><![CDATA[★☆ 微信自动快速复制粘帖发消息]]></title>
-        <url>https://bingshuang2014.github.io/2018/01/25/18012501/</url>
+        <url>https://bingshuang2014.github.io/2018/04/23/18012501/</url>
         <content type="html"><![CDATA[<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>最近小米有个活动 需要整点微信公众号发送 <strong><code>小爱同学</code></strong></p>
 <p>取第一个整点的同学 这可需要手速了</p>
 <p>作为一个Java新人 当然是敲敲代码解决喽</p>
@@ -126,13 +167,18 @@
     </entry>
     
     <entry>
-        <title><![CDATA[★☆ Java翁恺网易公开课Shapes.zip]]></title>
-        <url>https://bingshuang2014.github.io/2018/01/24/18012401/</url>
-        <content type="html"><![CDATA[<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>CSDN上竟然要积分才能下载坑人</p>
-<p>在网易公开课”Java语言程序设计进阶1.1”的学习界面</p>
-<p>点击下一个富文本</p>
-<p>就可以看到一个”下载附件”的按钮</p>
-<p>下载即可</p>
+        <title><![CDATA[★☆ 设计一个表示分数的类Fraction]]></title>
+        <url>https://bingshuang2014.github.io/2018/04/23/18012701/</url>
+        <content type="html"><![CDATA[<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>Java语言程序设计进阶 第1周编程题</p>
+<p>虽然我不能提交 但是耐不住自己试了试</p>
+<p>到现在搞不懂题目中</p>
+<p>要 <strong><code>double toDouble();</code></strong> 这个功能</p>
+<p>但是在main中没用到 <strong><code>tuDouble();</code></strong> 那要他有啥用</p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>为了防止有人直接拷贝代码去提交</p>
+<p>我对代码做了点小改变</p>
+<p>但是不影响你测试学习</p>
+<p>为自己机智 鼓掌.jpg</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Fraction</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> x;<span class="comment">//分子</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> y;<span class="comment">//分母</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">double</span> dx,dy;	</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Fraction</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.x=x;</span><br><span class="line">		<span class="keyword">this</span>.y=y;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">double</span> <span class="title">toDouble</span><span class="params">(Fraction a)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		dx=a.x;</span><br><span class="line">		dy=a.y;</span><br><span class="line">		System.out.println(dx/dy);</span><br><span class="line">		<span class="keyword">return</span> dx/dy;</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">gcd</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">while</span>(<span class="keyword">true</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>((y=y%x)==<span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">return</span> x;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span>((x=x%y)==<span class="number">0</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">return</span> y;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span>  <span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(x%y==<span class="number">0</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(x/y);	</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println((x/gcd(x,y))+<span class="string">"/"</span>+(y/gcd(x,y)));</span><br><span class="line">		&#125;</span><br><span class="line">			</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	<span class="function"><span class="keyword">public</span>  Fraction <span class="title">plus</span><span class="params">(Fraction a)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		Fraction w= <span class="keyword">new</span> Fraction((<span class="keyword">this</span>.x)*(a.y)+(a.x)*(<span class="keyword">this</span>.y),((<span class="keyword">this</span>.y)*(a.y)));</span><br><span class="line">		<span class="keyword">return</span> w;</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Fraction <span class="title">multiply</span><span class="params">(Fraction a)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		Fraction w = <span class="keyword">new</span> Fraction(<span class="keyword">this</span>.x*a.x,<span class="keyword">this</span>.y*a.y);	</span><br><span class="line">		<span class="keyword">return</span> w;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner input = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		Fraction a = <span class="keyword">new</span> Fraction(input.nextInt(), input.nextInt());</span><br><span class="line">		Fraction b = <span class="keyword">new</span> Fraction(input.nextInt(),input.nextInt());</span><br><span class="line">		a.print();</span><br><span class="line">		b.print();</span><br><span class="line">		toDouble(b);</span><br><span class="line">		a.plus(b).print();</span><br><span class="line">		a.multiply(b).plus(<span class="keyword">new</span> Fraction(<span class="number">5</span>,<span class="number">6</span>)).print();</span><br><span class="line">		a.print();</span><br><span class="line">		b.print();</span><br><span class="line">		input.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p><a href="http://mooc.study.163.com/course/1000004001" target="_blank" rel="noopener">Java语言程序设计进阶–翁恺</a></p>
 ]]></content>
         
@@ -151,7 +197,47 @@
             
             <tag> Java </tag>
             
-            <tag> 翁恺 </tag>
+            <tag> Fraction </tag>
+            
+            <tag> 分数 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+        <title><![CDATA[★☆ 斐讯K1 22.4.2.15刷机]]></title>
+        <url>https://bingshuang2014.github.io/2018/04/23/18021401/</url>
+        <content type="html"><![CDATA[<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>K1 免费得的 不太安全 并且需要开启免广告</p>
+<p>so 对K1进行大手术</p>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ul>
+<li><p>刷入Breed<br><a href="http://www.right.com.cn/forum/forum.php?mod=viewthread&amp;tid=207427" target="_blank" rel="noopener">教程在这里</a></p>
+</li>
+<li><p>刷入老毛子路由器固件<br><a href="http://www.right.com.cn/FORUM/thread-161324-1-1.html" target="_blank" rel="noopener">教程在这里</a></p>
+</li>
+</ul>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>在执行下面这命令的时候<br><strong><code>wget http://breed.hackpascal.net/breed-mt7620-phicomm-psg1208.bin</code></strong></p>
+<p>会提示下载失败 </p>
+<p>原因是hackpascal官网升级成了https</p>
+<p>解决办法很简单 先浏览器下载下bin文件 然后 本地搭建http服务</p>
+<p>wget <a href="http://你的地址/breed-mt7620-phicomm-psg1208.bin" target="_blank" rel="noopener">http://你的地址/breed-mt7620-phicomm-psg1208.bin</a></p>
+<p>完美解决</p>
+]]></content>
+        
+        <categories>
+            
+            <category> 刷机 </category>
+            
+            <category> K1 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> K1 </tag>
+            
+            <tag> 路由 </tag>
             
         </tags>
         
@@ -159,7 +245,7 @@
     
     <entry>
         <title><![CDATA[★☆ 插旗 占地喽]]></title>
-        <url>https://bingshuang2014.github.io/2018/01/24/18012301/</url>
+        <url>https://bingshuang2014.github.io/2018/04/23/18012301/</url>
         <content type="html"><![CDATA[<h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>冰霜2014 插旗！！！</p>
 <p>o(≧v≦)o~~</p>
 ]]></content>
